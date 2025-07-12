@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { useAuth } from "../../../context/AuthContext";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import api from "../../../lib/api"; // Make sure this points to your axios instance
 
 const categories = [
   { name: "Men", icon: "👔" },
@@ -12,16 +14,18 @@ const categories = [
   { name: "Sports", icon: "🏀" },
 ];
 
-const products = [
-  { id: 1, title: "Denim Jacket", image: "/placeholder.jpg" },
-  { id: 2, title: "Summer Dress", image: "/placeholder.jpg" },
-  { id: 3, title: "Sneakers", image: "/placeholder.jpg" },
-  { id: 4, title: "Backpack", image: "/placeholder.jpg" },
-];
-
 export default function LandingPage() {
   const { user } = useAuth();
   const router = useRouter();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const res = await api.get("/items");
+      setProducts(res.data);
+    }
+    fetchProducts();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">

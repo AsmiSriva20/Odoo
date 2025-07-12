@@ -49,26 +49,29 @@ router.post('/login', async (req, res) => {
 });
 const authMiddleware = require('../middleware/authMiddleware');
 
+const Product = require('../models/Product'); // ✅ Add this at the top
+
 router.get('/profile', authMiddleware, async (req, res) => {
   try {
-    console.log('Profile route: req.user:', req.user);
     const user = await User.findById(req.user.id);
-    console.log('Profile route: user from DB:', user);
-    // const items = await Item.find({ uploader: req.user.id }); // Uncomment if Item is imported and needed
-
     if (!user) {
       return res.status(404).json({ msg: 'User not found' });
     }
 
+    const listings = await Product.find({ userId: req.user.id });
+
     res.json({
       name: user.name,
       points: user.points || 0,
+      listings, // ✅ send back listings array
+      swaps: user.swaps || [], // optional, if swaps are stored in user
     });
   } catch (err) {
     console.error('Profile route error:', err);
     res.status(500).json({ msg: 'Server error' });
   }
 });
+
 
 
 module.exports = router;

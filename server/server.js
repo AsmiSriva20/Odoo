@@ -13,11 +13,13 @@ app.use(express.json());
 
 // Routes
 const authRoutes = require('./routes/auth');
-// const itemRoutes = require('./routes/items');
+const itemRoutes = require('./routes/items');
+const swapRoutes = require('./routes/swaps');
 // const adminRoutes = require('./routes/admin');
 
 app.use('/api/auth', authRoutes);
-// app.use('/api/items', itemRoutes);
+app.use('/api/items', itemRoutes);
+app.use('/api/swaps', swapRoutes);
 // app.use('/api/admin', adminRoutes);
 
 // MongoDB connection (no deprecated options)
