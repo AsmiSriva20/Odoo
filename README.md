@@ -1,4 +1,4 @@
-# ♻️ ReWear – Community Clothing Exchange 👕
+# ♻️ ReWear – Community Clothing Exchange 
 
 Welcome to **ReWear**, your sustainable solution to fast fashion. ReWear helps people **donate, discover, and reuse clothes** in their local community while earning points!
 
@@ -22,6 +22,7 @@ Follow these steps to launch the app locally:
 
 - Node.js (v18+)
 - MongoDB (Atlas or local)
+- Nextjs
 - Git (basic understanding)
 - A good mood 😄
 
