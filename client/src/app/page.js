@@ -13,7 +13,7 @@ export default function HomePage() {
     if (!user) {
       router.push('/login');
     } else {
-      router.push(user.isAdmin ? '/admin' : '/dashboard');
+      router.push(user.isAdmin ? '/admin' : '/landing');
     }
   }, [user]);
 
