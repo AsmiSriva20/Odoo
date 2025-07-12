@@ -16,7 +16,7 @@ export default function LoginPage() {
     try {
       const res = await api.post('/auth/login', { email, password });
       login(res.data.user, res.data.token);
-      router.push(res.data.user.isAdmin ? '/admin' : '/dashboard');
+      router.push(res.data.user.isAdmin ? '/admin' : '/landing');
     } catch (err) {
       alert(err.response.data.msg);
     }

@@ -54,6 +54,14 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-white p-6">
+      {/* Back Button */}
+      <button
+        onClick={() => router.push('/landing')}
+        className="mb-6 flex items-center gap-2 px-4 py-2 bg-white shadow hover:bg-green-50 text-green-700 rounded-full font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-300"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+        Back to Landing
+      </button>
       {/* Profile Card */}
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="col-span-1 flex flex-col items-center bg-white rounded-2xl shadow-lg p-8">
