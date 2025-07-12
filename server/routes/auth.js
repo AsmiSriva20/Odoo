@@ -22,6 +22,7 @@ router.post('/signup', async (req, res) => {
 });
 
 // LOGIN
+
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -46,5 +47,28 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+const authMiddleware = require('../middleware/authMiddleware');
+
+router.get('/profile', authMiddleware, async (req, res) => {
+  try {
+    console.log('Profile route: req.user:', req.user);
+    const user = await User.findById(req.user.id);
+    console.log('Profile route: user from DB:', user);
+    // const items = await Item.find({ uploader: req.user.id }); // Uncomment if Item is imported and needed
+
+    if (!user) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+
+    res.json({
+      name: user.name,
+      points: user.points || 0,
+    });
+  } catch (err) {
+    console.error('Profile route error:', err);
+    res.status(500).json({ msg: 'Server error' });
+  }
+});
+
 
 module.exports = router;
